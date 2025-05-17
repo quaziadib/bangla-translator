@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: bn-translator-frontend
+    build:
+      context: ./bangla-translator-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    volumes:
+      - ./bangla-translator-frontend:/app
+    environment:
+      - ENV_VAR_NAME=frontend-value
+    networks:
+      - app-network
+
+  backend:
+    image: bn-translator-backend
+    build:
+      context: ./open-ai-api-mt
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./open-ai-api-mt:/app
+    environment:
+      - OPENAI_API_KEY=${BACKEND_API_KEY}
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
