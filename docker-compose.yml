@@ -25,7 +25,7 @@ services:
     volumes:
       - ./open-ai-api-mt:/app
     environment:
-      - OPENAI_API_KEY=${BACKEND_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     networks:
       - app-network
 
