@@ -1,4 +1,4 @@
-FROM react
+FROM node
 
 WORKDIR /bangla-tranlator-frontend
 
