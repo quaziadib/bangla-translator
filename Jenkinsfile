@@ -4,9 +4,9 @@ pipeline {
     environment {
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
         GIT_SSH_CREDENTIALS_ID = 'OPS'
-        WORKSPACE_DIR = "/tmp/jenkins-workspace"
+        WORKSPACE_DIR = "${env.WORKSPACE}"  // Use Jenkins workspace
     }
-    
+
     stages {
         stage('Clone') {
             steps {
@@ -16,18 +16,15 @@ pipeline {
 
         stage('Build & Run') {
             steps {
-                sh 'mkdir -p $WORKSPACE_DIR'
-
-                dir("$WORKSPACE_DIR") {
-                        withCredentials([string(credentialsId: 'OPENAI_API_KEY', variable: 'OPENAI_API_KEY')]) {
+                dir("${WORKSPACE_DIR}") {
+                    withCredentials([string(credentialsId: 'OPENAI_API_KEY', variable: 'OPENAI_API_KEY')]) {
                         sh """
-                            echo OPENAI_API_KEY=$OPENAI_API_KEY > .env
+                            echo "OPENAI_API_KEY=$OPENAI_API_KEY" > .env
                             docker compose -f $DOCKER_COMPOSE_FILE up --build -d
+                            rm .env
                         """
                     }
                 }
-                
-
             }
         }
     }
