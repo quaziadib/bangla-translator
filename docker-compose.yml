@@ -19,8 +19,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    volumes:
-      - ./open-ai-api-mt:/app
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     networks:
