@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
         GIT_SSH_CREDENTIALS_ID = 'OPS'
+        WORKSPACE_DIR = "/home/quazi/jenkins-workspace"
     }
     
     stages {
@@ -15,12 +16,17 @@ pipeline {
 
         stage('Build & Run') {
             steps {
-                withCredentials([string(credentialsId: 'OPENAI_API_KEY', variable: 'OPENAI_API_KEY')]) {
-                    sh """
-                        echo OPENAI_API_KEY=$OPENAI_API_KEY > .env
-                        docker compose -f $DOCKER_COMPOSE_FILE up --build -d
-                    """
+                sh 'mkdir -p $WORKSPACE_DIR'
+                
+                dir("$WORKSPACE_DIR") {
+                        withCredentials([string(credentialsId: 'OPENAI_API_KEY', variable: 'OPENAI_API_KEY')]) {
+                        sh """
+                            echo OPENAI_API_KEY=$OPENAI_API_KEY > .env
+                            docker compose -f $DOCKER_COMPOSE_FILE up --build -d
+                        """
+                    }
                 }
+                
 
             }
         }
