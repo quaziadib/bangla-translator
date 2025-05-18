@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.'
 
 services:
   frontend:
@@ -7,13 +7,10 @@ services:
       context: ./bangla-translator-frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:80"
-    volumes:
-      - ./bangla-translator-frontend:/app
-    environment:
-      - ENV_VAR_NAME=frontend-value
+      - "80:80"  # Map Nginx port 80 to host 3000
     networks:
       - app-network
+
 
   backend:
     image: bn-translator-backend
@@ -32,3 +29,8 @@ services:
 networks:
   app-network:
     driver: bridge
+
+
+
+
+

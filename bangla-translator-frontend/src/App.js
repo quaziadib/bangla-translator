@@ -13,7 +13,8 @@ function App() {
     setResult(null);
 
     try {
-      const response = await axios.post('http://localhost:8000/translate', {
+      const BACKEND_URL = process.env.REACT_APP_API_BASE || 'http://localhost:8000';
+      const response = await axios.post(`${BACKEND_URL}/translate`, {
         text,
         target_language: targetLanguage,
       });
