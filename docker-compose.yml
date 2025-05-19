@@ -7,7 +7,7 @@ services:
       context: ./bangla-translator-frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"  # Map Nginx port 80 to host 3000
+      - "81:81"  # Map Nginx port 80 to host 3000
     networks:
       - app-network
 
@@ -18,7 +18,7 @@ services:
       context: ./open-ai-api-mt
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8010:8010"
     volumes:
       - ./open-ai-api-mt:/app
     environment:

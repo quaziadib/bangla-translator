@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git credentialsId: "${GIT_SSH_CREDENTIALS_ID}", url: 'git@github.com:quaziadib/bangla-translator.git', branch: 'main'
+                git credentialsId: "${GIT_SSH_CREDENTIALS_ID}", url: 'git@github.com:quaziadib/bangla-translator.git', branch: 'addVol'
             }
         }
 
