@@ -31,7 +31,7 @@ pipeline {
 
     post {
         failure {
-            echo "Build failed!"
+            echo "Build failed! Try Again"
         }
     }
 }
