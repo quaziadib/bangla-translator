@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
         GIT_SSH_CREDENTIALS_ID = 'OPS'
-        WORKSPACE_DIR = "/tmp/open-ai-api-mt"  
+        WORKSPACE_DIR = "/home/quazi/Desktop/OfficeWorkRoot/jenkinsFile"  
     }
 
     stages {

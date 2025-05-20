@@ -1,6 +1,6 @@
 FROM python:3.12
 
-WORKDIR /bangla-tranlator-backend
+WORKDIR /home/quazi/Desktop/OfficeWorkRoot/bangla-tranlator-backend
 
 COPY . .
 

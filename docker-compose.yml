@@ -25,6 +25,17 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     networks:
       - app-network
+  
+  db:
+    image: mysql:latest
+    container_name: bn-translator-db
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
 
 networks:
   app-network:

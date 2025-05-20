@@ -3,7 +3,7 @@ FROM node:20 AS build
 
 ENV REACT_APP_API_BASE=http://localhost:8000
 
-WORKDIR /app
+WORKDIR /home/quazi/Desktop/OfficeWorkRoot/app
 
 COPY . .
 
